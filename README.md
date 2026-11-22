@@ -1,69 +1,170 @@
-# Linear Regression on Ames Housing Dataset
+# RCA CIE 2 – Activity 1: Multiple Linear Regression
 
-**Course:** Regression and Classification (RCA) — CIE 2 (Activity 1)  
-**Roll Number:** AD3270  
-**Repository:** `RCA-CIE2-Linear-Regression-AD3270`
+## 1. Project Overview
+
+This project is submitted for Regression and Classification Algorithms (RCA), CIE 2 – Activity 1.
+
+The objective is to build Simple Linear Regression and Multiple Linear Regression models to predict house prices using different housing features.
+
+**Role:** Data Scientist predicting house prices.
+
+## 2. Dataset Information
+
+- **Dataset Name:** Ames Housing Dataset
+- **Dataset Source:** Kaggle
+- **Dataset Link:** https://www.kaggle.com/datasets/shashanknecrothapa/ames-housing-dataset
+- **Dataset Size:** 2,930 rows and 82 columns.
+
+### Selected Features
+
+**Input Features (X):**
+- Gr Liv Area
+- Overall Qual
+- Year Built
+
+**Target Variable (y):**
+- SalePrice
+
+## 3. Work Completed
+
+The following tasks were performed in the notebook:
+
+1. Importing required libraries.
+2. Loading and inspecting the dataset.
+3. Checking missing values and duplicates.
+4. Data cleaning and preprocessing.
+5. Performing Exploratory Data Analysis (EDA).
+6. Creating scatter plots and a correlation heatmap.
+7. Selecting important features using Pearson correlation.
+8. Performing manual regression calculations using the Normal Equation.
+9. Checking manual results using Scikit-learn.
+10. Splitting data into training and testing sets.
+11. Building Simple Linear Regression.
+12. Building Multiple Linear Regression.
+13. Calculating regression coefficients and intercept.
+14. Evaluating models using MAE, MSE, RMSE, R² and Adjusted R².
+15. Comparing both models.
+16. Creating actual versus predicted plots.
+17. Performing residual analysis.
+18. Checking multicollinearity using VIF.
+19. Predicting the price of a new house.
+20. Writing conclusions and limitations.
+
+## 4. Methodology
+
+- **Algorithms:** Simple Linear Regression and Multiple Linear Regression.
+- **Training Data:** 2,344 rows.
+- **Testing Data:** 586 rows.
+- **Train-Test Split:** 80:20.
+- **Random State:** 42.
+
+Manual regression calculations were performed using two features and verified using Scikit-learn.
+
+## 5. Model Evaluation Results
+
+The models achieved the following results on the test dataset:
+
+| Evaluation Metric | Single-Feature Model | Multiple-Feature Model |
+|---|---:|---:|
+| MAE | 36,141.27 | 29,135.30 |
+| MSE | 2.796 × 10⁹ | 1.957 × 10⁹ |
+| RMSE | 52,878.68 | 44,242.55 |
+| R² | 0.651 | 0.756 |
+| Adjusted R² | 0.651 | 0.755 |
+
+### Model Comparison
+
+The Multiple Linear Regression model performed better than the Single Linear Regression model.
+
+It has lower prediction errors and a higher R² score of 0.756.
+
+This shows that using three features gives better house price predictions than using only one feature.
+
+## 6. Regression Equation
+
+The Multiple Linear Regression equation is:
+
+SalePrice = -1067424.84 + 61.63(Gr Liv Area) + 25249.81(Overall Qual) + 507.93(Year Built)
+
+The coefficients show how each feature is related to house price while keeping the other features constant.
+
+## 7. Residual Analysis and VIF
+
+The following graphs were created:
+
+- Residual Plot
+- Residual Histogram
+- Actual vs Predicted Plot
+
+### VIF Results
+
+| Feature | VIF |
+|---|---:|
+| Gr Liv Area | 1.517 |
+| Overall Qual | 2.219 |
+| Year Built | 1.590 |
+
+All VIF values are below 5, showing no serious multicollinearity among the selected features.
+
+## 8. New House Prediction
+
+A new house was given the following details:
+
+- Gr Liv Area = 1436.5
+- Overall Qual = 6
+- Year Built = 1972
+
+**Predicted House Price: $174,240.79**
+
+## 9. Project Files
+
+The repository contains:
+- `RCA-CIE2-ACT1.ipynb` – Complete Jupyter Notebook.
+- `Cleaned_housing.csv` – Processed dataset.
+- `AmesHousing.csv` – Original dataset
+
+## 10. Technologies Used
+
+- Python
+- Google Colab / Jupyter Notebook
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+
+## 11. Conclusion
+
+In this activity, Simple Linear Regression and Multiple Linear Regression were implemented using the Ames Housing dataset.
+
+The models were evaluated and compared using different regression metrics.
+
+The Multiple Linear Regression model performed better, achieving an R² score of 0.756.
+
+This activity helped in understanding manual regression calculations, model building, prediction and model evaluation.
+
+## 12. Limitations
+
+- Only three features were used for prediction.
+- House prices depend on many other factors.
+- The model may not predict every house price accurately.
+- Predictions are estimates, not guaranteed prices.
+
+## 13. GitHub Submission Details
+
+**Student GitHub ID:**  
+https://github.com/complexiota
+
+**Student Name:** Aditi Balasaheb Pawar
+
+**Roll Number:** AD3270
+
+**Class:** T.Y. B.Tech AI & DS
+
+**Division:** B
+
+**Academic Year:** 2026–27
 
 ---
 
-## Overview
-
-This repository presents a simple linear regression workflow on the **Ames Housing Dataset** to predict house sale prices (`SalePrice`) from above-ground living area (`Gr Liv Area`). It covers exploratory inspection, missing-value imputation, train-test splitting, Ordinary Least Squares (OLS) model training with `scikit-learn`, and test-set evaluation.
-
----
-
-## Dataset
-
-* **Source:** [Ames Housing Dataset on Kaggle](https://www.kaggle.com/datasets/shashanknecrothapa/ames-housing-dataset)
-* **Raw File:** `AmesHousing.csv`
-* **Cleaned File:** `AmesHousing_Cleaned.csv`
-* **Size:** 2,930 records and 82 features
-
----
-
-## Methodology & Workflow
-
-1. **Exploratory Data Analysis:** Inspected dataset shape, data types, sample rows, and summary statistics.
-2. **Data Cleaning:**
-   * Audited missing values (`15,749` missing entries across `27` columns) and duplicate rows (`0` duplicates).
-   * Imputed missing numerical values using column medians and missing categorical values using column modes, leaving `0` missing values in `AmesHousing_Cleaned.csv`.
-3. **Train-Test Split:**
-   * Used `Gr Liv Area` as the predictor ($X$) and `SalePrice` as the target ($y$).
-   * Split the data into an **80% training set** (2,344 samples) and a **20% test set** (586 samples) with `random_state=42`.
-4. **Model Training & Evaluation:**
-   * Fit a `LinearRegression` model on the training set and evaluated predictions on the held-out test set.
-
----
-
-## Results
-
-### Learned Regression Equation
-
-$$\text{SalePrice} = 19250.56 + (106.73 \times \text{Gr Liv Area})$$
-
-* **Intercept:** `19250.5596`
-* **Slope (`Gr Liv Area`):** `106.7292`
-
-### Test Set Performance (586 Samples)
-
-| Metric | Value |
-| :--- | :--- |
-| **Mean Absolute Error (MAE)** | `41,365.51` |
-| **Mean Squared Error (MSE)** | `3,821,184,066.27` |
-| **Root Mean Squared Error (RMSE)** | `61,815.73` |
-| **R-squared ($R^2$)** | `0.5234` |
-
----
-
-## Repository Contents
-
-* `*.ipynb` — Jupyter Notebook containing data exploration, preprocessing, model training, and evaluation
-* `AmesHousing.csv` — Original dataset
-* `AmesHousing_Cleaned.csv` — Preprocessed dataset with missing values imputed
-* `README.md` — Project documentation
-
----
-
-## Conclusion
-
-Above-ground living area (`Gr Liv Area`) shows a clear positive linear relationship with house sale price (`SalePrice`), explaining **52.34%** of the variance ($R^2 = 0.5234$) on the test set with a slope of roughly `106.73` per square foot. At the same time, the test RMSE of `61,815.73` indicates substantial remaining error, showing that a single linear predictor cannot capture all price variation on its own and that adding more relevant housing features or exploring non-linear/regularized models would be logical next steps.
+Submitted as part of CIE 2 – Regression and Classification Algorithms.
