@@ -119,9 +119,10 @@ A new house was given the following details:
 ## 9. Project Files
 
 The repository contains:
-- `RCA-CIE2-ACT1.ipynb` – Complete Jupyter Notebook.
-- `Cleaned_housing.csv` – Processed dataset.
-- `AmesHousing.csv` – Original dataset
+`RCA-CIE2-ACT1.ipynb` – Complete Jupyter Notebook.
+`AmesHousing.csv` – Original dataset.
+`Cleaned_housing.csv` – Cleaned dataset.
+`README.md` – Project description.
 
 ## 10. Technologies Used
 
